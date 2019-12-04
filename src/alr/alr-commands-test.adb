@@ -133,7 +133,7 @@ package body Alr.Commands.Test is
 
                OS_Lib.Spawn_And_Capture
                  (Output,
-                  "alr", "get --compile -d -n " & R.Milestone.Image,
+                  "alr", "get --build -d -n " & R.Milestone.Image,
                   Err_To_Out => True);
 
                Trace.Detail (Output.Flatten (Newline));
