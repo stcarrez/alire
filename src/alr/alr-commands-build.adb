@@ -20,6 +20,10 @@ package body Alr.Commands.Build is
 
       --  COMPILATION
       begin
+
+         CAPTURE OUTPUT and PRINT IT if not in QUIET LEVEL
+           WAITING for FABIEN'S PATCH ON SPAWN SO not TO CONFLICT with HIM.
+
          Spawn.Gprbuild (Root.Current.Build_File,
                          Extra_Args    => Scenario.As_Command_Line);
       exception
