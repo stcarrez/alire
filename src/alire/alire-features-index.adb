@@ -9,8 +9,6 @@ with Alire.OS_Lib;
 
 with GNAT.OS_Lib;
 
-with GNATCOLL.VFS;
-
 with TOML;
 with TOML.File_IO;
 
@@ -93,18 +91,6 @@ package body Alire.Features.Index is
          return Priority;
       end Adjust_Priorities;
 
-      -------------
-      -- Cleanup --
-      -------------
-
-      procedure Cleanup (Path : String) is
-      begin
-         if Ada.Directories.Exists (Path) then
-            Trace.Debug ("Cleaning up failed index remnants at " & Path);
-            Ada.Directories.Delete_Tree (Path);
-         end if;
-      end Cleanup;
-
    begin
       if not Result.Success then
          return Result;
@@ -142,8 +128,6 @@ package body Alire.Features.Index is
 
       --  Create handler with proper priority and proceed
       declare
-         use GNATCOLL.VFS;
-
          Adjust_Result : Outcome := Outcome_Success; -- Might end unused
 
          Priority      : constant Index_On_Disk.Priorities :=
@@ -166,29 +150,7 @@ package body Alire.Features.Index is
 
          Trace.Debug ("Adding index " & Origin & " at " & Under);
 
-         --  Create containing folder with its metadata
-         Create (+Index.Metadata_Directory).Make_Dir;
-         Result := Index.Write_Metadata (Index.Metadata_File);
-         if not Result.Success then
-            Cleanup (Index.Metadata_Directory);
-            return Result;
-         end if;
-
-         --  Deploy the index
-         Result := Index.Add;
-         if not Result.Success then
-            Cleanup (Index.Metadata_Directory);
-            return Result;
-         end if;
-
-         --  Verify the index
-         Result := Index.Verify;
-         if not Result.Success then
-            Cleanup (Index.Metadata_Directory);
-            return Result;
-         end if;
-
-         return Outcome_Success;
+         return Index.Add_With_Metadata;
       end;
    end Add;
 
@@ -204,7 +166,7 @@ package body Alire.Features.Index is
 
          if Idx.Name = Alire.Index.Community_Name then
             Assert (Idx.Delete);
-            Assert (Idx.Add);
+            Assert (Idx.Add_With_Metadata);
 
             return Outcome_Success;
          end if;
