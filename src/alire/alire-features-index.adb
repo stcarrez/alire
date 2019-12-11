@@ -159,7 +159,8 @@ package body Alire.Features.Index is
    ----------------------------
 
    function Add_Or_Reset_Community return Outcome is
-      Result : Outcome;
+      Result : Outcome with Warnings => Off;
+      --  Spurious warning to be silenced in Debian stable/Ubuntu LTS GNATs.
    begin
       for Idx of Find_All (Config.Indexes_Directory, Result) loop
          Assert (Result);
