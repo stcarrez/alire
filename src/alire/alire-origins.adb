@@ -173,6 +173,7 @@ package body Alire.Origins is
          if Prefixes (Kind) /= null and then
            Utils.Starts_With (From, Prefixes (Kind).all)
          then
+
             case Kind is
                when Git            => This := New_Git (URL, Commit);
                when Hg             => This := New_Hg (URL, Commit);

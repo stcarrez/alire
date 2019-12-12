@@ -9,6 +9,10 @@ package Alire.TOML_Adapters with Preelaborate is
    --  Also encapsulates a context that can be used to pinpoint errors better.
    --  Note: all operations on this type use shallow copies!
 
+   --  In order to pass some information to the entities being constructed from
+   --  TOML (e.g., the index location and if it is the community index), we
+   --  take advantage of this type
+
    function Empty_Queue return Key_Queue;
 
    function From (Key     : String;
