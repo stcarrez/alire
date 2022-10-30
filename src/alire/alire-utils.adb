@@ -127,6 +127,43 @@ package body Alire.Utils is
       end return;
    end Count_True;
 
+   -----------------
+   -- First_Match --
+   -----------------
+
+   function First_Match (Regex : String; Text : String) return String is
+
+      -----------------------
+      -- Count_Parentheses --
+      -----------------------
+
+      function Count_Parentheses return Positive is
+         Count : Natural := 0;
+      begin
+         for Char of Regex loop
+            if Char = '(' then
+               Count := Count + 1;
+            end if;
+         end loop;
+         return Count;
+      end Count_Parentheses;
+
+      use GNAT.Regpat;
+      Matches : Match_Array (1 .. Count_Parentheses);
+      --  This is a safe estimation, as some '(' may not be part of a capture
+
+   begin
+      Match (Regex, Text, Matches);
+
+      for I in Matches'Range loop
+         if Matches (I) /= No_Match then
+            return Text (Matches (I).First .. Matches (I).Last);
+         end if;
+      end loop;
+
+      return "";
+   end First_Match;
+
    -------------------------------
    -- Is_Valid_Full_Person_Name --
    -------------------------------
@@ -152,6 +189,7 @@ package body Alire.Utils is
 
    function Is_Valid_Tag (Tag : String) return Boolean is
      ((for all C of Tag => C in '0' .. '9' | 'a' .. 'z' | '-')
+      and then Tag'Length in 1 .. Max_Tag_Length
       and then Tag (Tag'First) /= '-'
       and then Tag (Tag'Last) /= '-'
       and then not AAA.Strings.Contains (Tag, "--"));

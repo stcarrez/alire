@@ -270,10 +270,8 @@ package body Alr.Commands is
                                   Force_Reload : Boolean := False) is
       pragma Unreferenced (Cmd);
    begin
-      Alire.Index_On_Disk.Loading.Setup_And_Load
-        (From   => Alire.Config.Edit.Indexes_Directory,
-         Strict => Strict,
-         Force  => Force_Reload);
+      Alire.Index_On_Disk.Loading.Load_All (Strict => Strict,
+                                            Force  => Force_Reload).Assert;
    end Requires_Full_Index;
 
    ----------------------------
@@ -307,7 +305,6 @@ package body Alr.Commands is
       if Cmd not in Commands.Toolchain.Command'Class and then
         Alire.Toolchains.Assistant_Enabled
       then
-         Cmd.Requires_Full_Index;
          Alire.Toolchains.Assistant (Conf.Global);
       end if;
 
@@ -350,7 +347,6 @@ package body Alr.Commands is
 
                   if Checked.Solution.Is_Attempted then
                      --  Check deps on disk match those in lockfile
-                     Cmd.Requires_Full_Index (Strict => False);
                      Checked.Sync_From_Manifest (Silent   => False,
                                                  Interact => False);
                      return;
@@ -403,7 +399,6 @@ package body Alr.Commands is
          --  upcoming) we are done. Otherwise, do a silent update.
 
          if Sync then
-            Cmd.Requires_Full_Index (Strict => False);
             Checked.Sync_From_Manifest (Silent   => False,
                                         Interact => False,
                                         Force    => True);
@@ -565,29 +560,30 @@ begin
    -- Commands --
    Sub_Cmd.Register ("General", new Sub_Cmd.Builtin_Help);
    Sub_Cmd.Register ("General", new Config.Command);
-   Sub_Cmd.Register ("General", new Printenv.Command);
    Sub_Cmd.Register ("General", new Toolchain.Command);
    Sub_Cmd.Register ("General", new Version.Command);
 
-   Sub_Cmd.Register ("Build", new Action.Command);
-   Sub_Cmd.Register ("Build", new Build.Command);
-   Sub_Cmd.Register ("Build", new Clean.Command);
-   Sub_Cmd.Register ("Build", new Dev.Command);
-   Sub_Cmd.Register ("Build", new Edit.Command);
-   Sub_Cmd.Register ("Build", new Run.Command);
-   Sub_Cmd.Register ("Build", new Test.Command);
-   Sub_Cmd.Register ("Build", new Exec.Command);
-
    Sub_Cmd.Register ("Index", new Get.Command);
    Sub_Cmd.Register ("Index", new Index.Command);
-   Sub_Cmd.Register ("Index", new Init.Command);
-   Sub_Cmd.Register ("Index", new Pin.Command);
    Sub_Cmd.Register ("Index", new Search.Command);
    Sub_Cmd.Register ("Index", new Show.Command);
-   Sub_Cmd.Register ("Index", new Update.Command);
-   Sub_Cmd.Register ("Index", new Withing.Command);
+
+   Sub_Cmd.Register ("Crate", new Build.Command);
+   Sub_Cmd.Register ("Crate", new Clean.Command);
+   Sub_Cmd.Register ("Crate", new Edit.Command);
+   Sub_Cmd.Register ("Crate", new Exec.Command);
+   Sub_Cmd.Register ("Crate", new Init.Command);
+   Sub_Cmd.Register ("Crate", new Pin.Command);
+   Sub_Cmd.Register ("Crate", new Printenv.Command);
+   Sub_Cmd.Register ("Crate", new Run.Command);
+   Sub_Cmd.Register ("Crate", new Update.Command);
+   Sub_Cmd.Register ("Crate", new Withing.Command);
 
    Sub_Cmd.Register ("Publish", new Publish.Command);
+
+   Sub_Cmd.Register ("Testing", new Action.Command);
+   Sub_Cmd.Register ("Testing", new Dev.Command);
+   Sub_Cmd.Register ("Testing", new Test.Command);
 
    -- Help topics --
    Sub_Cmd.Register (new Topics.Naming_Convention.Topic);

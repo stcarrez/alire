@@ -6,6 +6,7 @@ with Alire.Dependencies;
 with Alire.Origins;
 with Alire.Policies;
 with Alire.Properties;
+with Alire.Provides;
 with Alire.Releases.Containers;
 
 with Semantic_Versioning.Extended;
@@ -39,7 +40,7 @@ package Alire.Index is
      and then Branch_String (Branch_String'Last) /= '-'
      and then (for some C of Branch_String => C = '-');
 
-   Community_Branch : constant String := "stable-1.2";
+   Community_Branch : constant String := "stable-1.2.1";
    --  The branch used for the community index. Must be updated when new index
    --  features are introduced.
 
@@ -77,53 +78,64 @@ package Alire.Index is
                   Policy : Policies.For_Index_Merging :=
                     Policies.Merge_Priorizing_Existing);
 
-   procedure Detect_All_Externals (Env : Properties.Vector);
-   --  Goes over the list of crates and applies external detection, indexing
-   --  any found externals. This has effect only the first time it is called.
-
    procedure Detect_Externals (Name : Crate_Name; Env : Properties.Vector);
    --  Add only the externals of this crate. This has effect only the first
    --  time it is called for a crate.
 
-   procedure Register_External_Alias (Provider  : Crate_Name;
-                                      Providing : Crate_Name);
-   --  Register that Provider has external detectors for Providing
+   procedure Register_Alias (Provider  : Crate_Name;
+                             Providing : Crate_Name);
+   --  Register that Provider has external detectors for Providing, or simply
+   --  it is a regular release that provides Providing.
 
    ---------------------
    --  BASIC QUERIES  --
    ---------------------
 
-   function Crate (Name : Crate_Name) return Crates.Crate
-     with Pre =>
-       Exists (Name) or else
-       raise Checked_Error with "Requested crate not in index: " & (+Name);
+   --  The following queries will automatically load crates from the indexes
 
-   function Exists (Name : Crate_Name) return Boolean;
+   type Query_Options is record
+      Detect_Externals : Boolean := False;
+      --  Whether to trigger external detection, which may be slow in some OSes
+
+      Load_From_Disk   : Boolean := True;
+      --  Whether to rely on in-memory info, or load required crates on-demand
+   end record;
+
+   Query_Defaults : constant Query_Options := (others => <>);
+   Query_Fully    : constant Query_Options := (others => True);
+   Query_Mem_Only : constant Query_Options := (others => False);
+
+   function Crate (Name : Crate_Name;
+                   Opts : Query_Options := Query_Defaults)
+                   return Crates.Crate;
 
    function Exists (Name : Crate_Name;
-                    Version : Semantic_Versioning.Version)
+                    Opts : Query_Options := Query_Defaults)
+                    return Boolean;
+
+   function Exists (Name : Crate_Name;
+                    Version : Semantic_Versioning.Version;
+                    Opts : Query_Options := Query_Defaults)
                     return Boolean;
 
    function Has_Externals (Name : Crate_Name) return Boolean;
 
-   function Releases_Satisfying (Dep              : Dependencies.Dependency;
-                                 Env              : Properties.Vector;
-                                 Use_Equivalences : Boolean := True;
-                                 Available_Only   : Boolean := True;
-                                 With_Origin      : Origins.Kinds_Set :=
-                                   (others => True))
-                                 return Releases.Containers.Release_Set;
+   function Releases_Satisfying
+     (Dep              : Dependencies.Dependency;
+      Env              : Properties.Vector;
+      Opts             : Query_Options := Query_Defaults;
+      Use_Equivalences : Boolean := True;
+      Available_Only   : Boolean := True;
+      With_Origin      : Origins.Kinds_Set :=
+        (others => True))
+      return Releases.Containers.Release_Set;
    --  Return all releases in the catalog able to provide this dependency,
    --  also optionally considering their "provides" equivalences, and also
    --  optionally including unavailable on the platform.
 
    function Find (Name    : Crate_Name;
-                  Version : Semantic_Versioning.Version) return Release
-     with Pre =>
-       Exists (Name, Version) or else
-     raise Checked_Error with
-       "Requested milestone not in index: "
-       & (+Name) & "=" & Semantic_Versioning.Image (Version);
+                  Version : Semantic_Versioning.Version;
+                  Opts    : Query_Options := Query_Defaults) return Release;
 
    --  Counts
 
@@ -135,6 +147,10 @@ package Alire.Index is
    --  a proper type to be returned and manipulated via the functions in this
    --  package.
 
-   function All_Crates return access constant Crates.Containers.Maps.Map;
+   function All_Crates (Opts : Query_Options := Query_Defaults)
+                        return access constant Crates.Containers.Maps.Map;
+
+   function All_Crate_Aliases return access Provides.Crate_Provider_Map;
+   --  For use from the loading functions; not intended for normal clients
 
 end Alire.Index;

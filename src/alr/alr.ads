@@ -1,3 +1,5 @@
+private with Ada.Strings.UTF_Encoding.Wide_Wide_Strings;
+
 with Alire;
 
 with Simple_Logging;
@@ -17,7 +19,7 @@ package Alr with Preelaborate is
    --  stack trace).
 
    --  Use some general types for the benefit of all child packages:
-   pragma Warnings (Off);
+   pragma Warnings (Off, "has no effect");
    use all type Alire.Crate_Name;
    use all type Simple_Logging.Levels;
    pragma Warnings (On);
@@ -31,5 +33,11 @@ package Alr with Preelaborate is
    --  Some Paths constants that help to break circularities
 
    Bootstrap_Hash : constant String := "bootstrap";
+
+private
+
+   function WW (S : Ada.Strings.UTF_Encoding.UTF_8_String)
+                return Wide_Wide_String
+                renames Ada.Strings.UTF_Encoding.Wide_Wide_Strings.decode;
 
 end Alr;
