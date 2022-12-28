@@ -1,0 +1,92 @@
+.TH ALR-SEARCH 1 "Aug 3, 2022" "Alire 1.2" "Alire manual"
+.nh
+.ad l
+.SH NAME
+alr-search \- Search a string in release names and properties
+.\"
+.SH SYNOPSIS
+.sp
+\fIalr search\fP [options] <search term> | [\-\-crates] [\-\-full] \-\-list
+.\"
+.SH OPTIONS
+.TP 5
+--crates
+Restrict search and output to crate names and descriptions
+.TP 5
+--external-detect
+Detect externally-provided releases (implies --external)
+.TP 5
+--full
+Show all versions of a crate (newest only otherwise)
+.TP 5
+--list
+List all available releases
+.TP 5
+--external
+Include externally-provided releases in search
+.TP 5
+--property=\fITEXT\fP
+Search TEXT in property values
+.\"
+.SH GLOBAL OPTIONS
+.TP 5
+-c, --config=\fIARG\fP
+Override configuration folder location
+.TP 5
+-f, --force
+Keep going after a recoverable troublesome situation
+.TP 5
+-h, --help
+Display general or command-specific help
+.TP 5
+-n, --non-interactive
+Assume default answers for all user prompts
+.TP 5
+--no-color
+Disables colors in output
+.TP 5
+--no-tty
+Disables control characters in output
+.TP 5
+--prefer-oldest
+Prefer oldest versions instead of newest when resolving dependencies
+.TP 5
+--version
+Displays version and exits
+.TP 5
+-q
+Limit output to errors
+.TP 5
+-v
+Be more verbose (use twice for extra detail)
+.TP 5
+-d, --debug[]
+Enable debug-specific log messages
+.\"
+.SH DESCRIPTION
+Searches the given substring in crate names (or properties with \fI--property\fP),
+and shows the most recent release of matching crates (unless \fI--full\fP is
+specified).
+.PP
+Use \fI--crates\fP to get a simple list of only crate names and  descriptions.
+Otherwise, besides version, description and release notes, a status column
+with the following status flags is provided:
+.PP
+E: the release is externally provided.
+.br
+S: the release is available through a system package.
+.br
+U: the release is not available in the current platform.
+.br
+X: the release has dependencies that cannot be resolved.
+.PP
+The reasons for unavailability (U) can be ascertained with 'alr show
+<crate>=<version>'.
+Unresolvable releases (X) should not happen in platforms with assigned
+maintainers. Common reasons are missing system dependencies that have been
+phased out by the platform without being updated yet in the community index.
+
+.SH SEE ALSO
+\fIalr(1)\fR, \fIalr-get(1)\fR, \fIalr-index(1)\fR, \fIalr-init(1)\fR, \fIalr-pin(1)\fR, \fIalr-show(1)\fR, \fIalr-update(1)\fR, \fIalr-with(1)\fR, \fIgprbuild(1)\fR
+.SH AUTHOR
+Generated with generate-man from Alire execution

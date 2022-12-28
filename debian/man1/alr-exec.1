@@ -1,0 +1,69 @@
+.TH ALR-EXEC 1 "Aug 3, 2022" "Alire 1.2" "Alire manual"
+.nh
+.ad l
+.SH NAME
+alr-exec \- Run the given command in the alire project context
+.\"
+.SH SYNOPSIS
+.sp
+\fIalr exec\fP [options] [\-P?] [\-\-] <executable/script> [<switches and arguments>]
+.\"
+.SH OPTIONS
+.TP 5
+-P\fI[ARG]\fP
+Add "-P <PROJECT_FILE>" to the command switches
+.\"
+.SH GLOBAL OPTIONS
+.TP 5
+-c, --config=\fIARG\fP
+Override configuration folder location
+.TP 5
+-f, --force
+Keep going after a recoverable troublesome situation
+.TP 5
+-h, --help
+Display general or command-specific help
+.TP 5
+-n, --non-interactive
+Assume default answers for all user prompts
+.TP 5
+--no-color
+Disables colors in output
+.TP 5
+--no-tty
+Disables control characters in output
+.TP 5
+--prefer-oldest
+Prefer oldest versions instead of newest when resolving dependencies
+.TP 5
+--version
+Displays version and exits
+.TP 5
+-q
+Limit output to errors
+.TP 5
+-v
+Be more verbose (use twice for extra detail)
+.TP 5
+-d, --debug[]
+Enable debug-specific log messages
+.\"
+.SH DESCRIPTION
+Alr sets up the environment variables (GPR_PROJECT_PATH,
+PATH, etc.) and then spawns the given command.
+.PP
+This can be used to run tools or scripts on Alire projects.
+The \fI-P\fP switch can be used to ask Alire to insert a
+\fI-P <PROJECT_FILE>\fP switch to the command arguments.
+\fI-P\fP takes an optional position argument to specify where
+to insert the extra switch. \fI-P1\fP means first position,
+\fI-P2\fP second position, etc. \fI-P-1\fP means last position,
+\fI-P-2\fP penultimate position, etc. \fI-P\fP equals \fI-P1\fP.
+For example "alr exec -P2 \fI--\fP python3 main.py arg1" will
+run the following command:
+["python3", "main.py", \fI-P\fP, "crate.gpr", "arg1"]
+
+.SH SEE ALSO
+\fIalr(1)\fR, \fIalr-action(1)\fR, \fIalr-build(1)\fR, \fIalr-clean(1)\fR, \fIalr-dev(1)\fR, \fIalr-edit(1)\fR, \fIalr-run(1)\fR, \fIalr-test(1)\fR, \fIgprbuild(1)\fR
+.SH AUTHOR
+Generated with generate-man from Alire execution

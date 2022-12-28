@@ -1,0 +1,72 @@
+.TH ALR 1 "Aug 3, 2022" "Alire 1.2" "Alire manual"
+.nh
+.ad l
+.SH NAME
+alr \- Ada Library Repository
+.\"
+.SH SYNOPSIS
+.sp
+\fIalr\fP [global options] <command> [command options]] [<arguments>]
+.SH DESCRIPTION
+
+\fIAlire\fR is a source-based package manager for the Ada and SPARK programming
+languages.
+
+It is a way for developers to easily build upon projects (libraries or
+programs) shared by the community, but also to easily share their projects for
+others to build upon.
+
+In the Alire vocabulary, sources of projects/libraries/programs are provided by
+what is called a \fIcrate\fR. A crate can depend on crates, and other crates can
+depend on it. For instance, the \fIlibgpr\fR crate depends on the \fIxmlada\fR crate.
+
+Crates can have multiple dependencies, themselves having multiple dependencies.
+This forms a dependency graph. Alire's main task is to automatically fetch,
+build and upgrade the crates of the dependency graph so you don't have to do it
+by hand.
+
+The main interface into the \fIAlire\fR ecosystem is a command line tool called
+\fIalr\fR.
+.SS User defined command aliases
+Command aliases can be defined in local or global
+configuration.
+
+For example the following command:
+"$ alr config --set --global alias.graph 'show --graph'"
+Defines a global alias for the 'show' command with a
+.I --graph
+switch.
+
+"$ alr graph" is equivalent to "alr show --graph"
+
+
+.SS Naming rules for crate and index names
+Identifiers for crates and indexes must use lowercase alphanumeric characters
+from the latin alphabet. Underscores can also be used except as the first
+character.
+
+Length must be of 3 to 64 characters.
+
+
+.SS Configuration and use of toolchains
+Alire indexes binary releases of GNAT and gprbuild. The compilers are indexed
+with their target name, e.g., gnat_native or gnat_riscv_elf.
+
+Use alr toolchain --help to obtain information about toolchain management.
+Alire can be configured to rely on a toolchain installed by the user in the
+environment, or to use one of the indexed toolchains whenever possible.
+
+Some crates may override the default toolchain by specifying dependencies on
+particular compiler crates, for example to use a cross-compiler. In this
+situation, a compiler already available (selected as default or already
+installed) will take precedence over a compiler available in the catalog.
+
+See also https://alire.ada.dev/docs/#toolchains for additional details about
+compiler dependencies and toolchain interactions.
+
+
+
+.SH SEE ALSO
+\fIalr-get(1)\fR, \fIalr-index(1)\fR, \fIalr-init(1)\fR, \fIalr-pin(1)\fR, \fIalr-search(1)\fR, \fIalr-show(1)\fR, \fIalr-update(1)\fR, \fIalr-with(1)\fR, \fIgprbuild(1)\fR
+.SH AUTHOR
+Generated with generate-man from Alire execution

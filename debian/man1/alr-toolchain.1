@@ -1,0 +1,84 @@
+.TH ALR-TOOLCHAIN 1 "Aug 3, 2022" "Alire 1.2" "Alire manual"
+.nh
+.ad l
+.SH NAME
+alr-toolchain \- Manage Alire-provided toolchains
+.\"
+.SH SYNOPSIS
+.sp
+\fIalr toolchain\fP [options] [\-u|\-\-uninstall] [\-i|\-\-install crate[version set]] | \-\-select [\-\-local] [releases] [\-\-disable\-assistant]
+.\"
+.SH OPTIONS
+.TP 5
+--disable-assistant
+Disable autorun of selection assistant
+.TP 5
+-i, --install
+Install one or more toolchain component
+.TP 5
+--install-dir=\fIARG\fP
+Toolchain component(s) installation directory
+.TP 5
+--local
+Store toolchain configuration in local workspace
+.TP 5
+--select
+Run the toolchain selection assistant
+.TP 5
+-u, --uninstall
+Uninstall one or more toolchain component
+.\"
+.SH GLOBAL OPTIONS
+.TP 5
+-c, --config=\fIARG\fP
+Override configuration folder location
+.TP 5
+-f, --force
+Keep going after a recoverable troublesome situation
+.TP 5
+-h, --help
+Display general or command-specific help
+.TP 5
+-n, --non-interactive
+Assume default answers for all user prompts
+.TP 5
+--no-color
+Disables colors in output
+.TP 5
+--no-tty
+Disables control characters in output
+.TP 5
+--prefer-oldest
+Prefer oldest versions instead of newest when resolving dependencies
+.TP 5
+--version
+Displays version and exits
+.TP 5
+-q
+Limit output to errors
+.TP 5
+-v
+Be more verbose (use twice for extra detail)
+.TP 5
+-d, --debug[]
+Enable debug-specific log messages
+.\"
+.SH DESCRIPTION
+Download toolchain elements, like GNAT and gprbuild, in the shared cache of
+the active configuration.
+.PP
+Run it without arguments to get a list of downloaded tools.
+Use \fI--select\fP without arguments to run the assistant to select the default
+toolchain for this configuration. Adding \fI--local\fP will instead make the
+selection apply only to the workspace (overriding a possible configuration-
+wide selection). Giving one or more releases argument will skip the assistant
+and set the release as the default.
+Specify \fI--install\fP/\fI--uninstall\fP and one or more crates name with optional
+version set to make available or remove a tool.
+Run `alr help toolchains` for further information about toolchain management
+and use.
+
+.SH SEE ALSO
+\fIalr(1)\fR, \fIalr-config(1)\fR, \fIalr-printenv(1)\fR, \fIalr-version(1)\fR, \fIgprbuild(1)\fR
+.SH AUTHOR
+Generated with generate-man from Alire execution

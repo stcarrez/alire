@@ -1,0 +1,94 @@
+.TH ALR-WITH 1 "Aug 3, 2022" "Alire 1.2" "Alire manual"
+.nh
+.ad l
+.SH NAME
+alr-with \- Manage release dependencies
+.\"
+.SH SYNOPSIS
+.sp
+\fIalr with\fP [options] [{ [\-\-del] <crate>[versions]... | \-\-from <gpr_file>... | <crate>[versions] \-\-use <path> [\-\-commit REF] [\-\-branch NAME]} ] | \-\-solve | \-\-tree | \-\-versions
+.\"
+.SH OPTIONS
+.TP 5
+--del
+Remove given dependencies
+.TP 5
+--from
+Use dependencies declared within GPR project file
+.TP 5
+--graph
+Show ASCII graph of dependencies
+.TP 5
+--branch=\fINAME\fP
+Branch to track in repository
+.TP 5
+--commit=\fIREF\fP
+Commit to retrieve from repository
+.TP 5
+--use=\fIPATH|URL\fP
+Add a dependency pinned to some external source
+.TP 5
+--solve
+Show complete solution to dependencies
+.TP 5
+--tree
+Show complete dependency tree
+.TP 5
+--versions
+Show version status of dependencies
+.\"
+.SH GLOBAL OPTIONS
+.TP 5
+-c, --config=\fIARG\fP
+Override configuration folder location
+.TP 5
+-f, --force
+Keep going after a recoverable troublesome situation
+.TP 5
+-h, --help
+Display general or command-specific help
+.TP 5
+-n, --non-interactive
+Assume default answers for all user prompts
+.TP 5
+--no-color
+Disables colors in output
+.TP 5
+--no-tty
+Disables control characters in output
+.TP 5
+--prefer-oldest
+Prefer oldest versions instead of newest when resolving dependencies
+.TP 5
+--version
+Displays version and exits
+.TP 5
+-q
+Limit output to errors
+.TP 5
+-v
+Be more verbose (use twice for extra detail)
+.TP 5
+-d, --debug[]
+Enable debug-specific log messages
+.\"
+.SH DESCRIPTION
+Inspect and manage dependencies.
+.PP
+.SS Inspecting dependencies
+Run without arguments prints current dependencies. Use \fI--solve\fP to print the
+solution in use for these dependencies.
+.SS Adding dependencies from the command line
+Dependencies are added by giving their name, and removed by using the \fI--del\fP
+flag. Dependencies cannot be simultaneously added and removed in a single
+invocation.
+.SS Adding dependencies pinned to external sources
+When a single crate name is accompanied by an \fI--use\fP PATH|URL argument, the
+crate is always fulfilled for any required version by the sources found at
+the given target. An optional reference can be specified with \fI--commit\fP; the
+pin will be frozen at the commit currently matching the reference.
+
+.SH SEE ALSO
+\fIalr(1)\fR, \fIalr-get(1)\fR, \fIalr-index(1)\fR, \fIalr-init(1)\fR, \fIalr-pin(1)\fR, \fIalr-search(1)\fR, \fIalr-show(1)\fR, \fIalr-update(1)\fR, \fIgprbuild(1)\fR
+.SH AUTHOR
+Generated with generate-man from Alire execution

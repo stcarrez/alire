@@ -1,0 +1,75 @@
+.TH ALR-TEST 1 "Aug 3, 2022" "Alire 1.2" "Alire manual"
+.nh
+.ad l
+.SH NAME
+alr-test \- Tests the compilation of all or some releases
+.\"
+.SH SYNOPSIS
+.sp
+\fIalr test\fP [options] [crate[versions]]...
+.\"
+.SH OPTIONS
+.TP 5
+--continue
+Skip testing of releases already in folder
+.TP 5
+--docker\fI[=\fIIMAGE]\fP\fP
+Test releases within docker IMAGE (or alire/gnat:debian-stable)
+.TP 5
+--full
+Test all indexed crates
+.TP 5
+--newest
+Test only the newest release in crates
+.TP 5
+--redo
+Retest releases already in folder (implies --continue)
+.TP 5
+--search
+Interpret arguments as substrings instead of exact crate names
+.\"
+.SH GLOBAL OPTIONS
+.TP 5
+-c, --config=\fIARG\fP
+Override configuration folder location
+.TP 5
+-f, --force
+Keep going after a recoverable troublesome situation
+.TP 5
+-h, --help
+Display general or command-specific help
+.TP 5
+-n, --non-interactive
+Assume default answers for all user prompts
+.TP 5
+--no-color
+Disables colors in output
+.TP 5
+--no-tty
+Disables control characters in output
+.TP 5
+--prefer-oldest
+Prefer oldest versions instead of newest when resolving dependencies
+.TP 5
+--version
+Displays version and exits
+.TP 5
+-q
+Limit output to errors
+.TP 5
+-v
+Be more verbose (use twice for extra detail)
+.TP 5
+-d, --debug[]
+Enable debug-specific log messages
+.\"
+.SH DESCRIPTION
+Tests the retrievability and buildability of all or specific releases. Unless
+\fI--continue\fP or \fI--redo\fP is given, the command expects to be run in an empty
+folder.
+.PP
+
+.SH SEE ALSO
+\fIalr(1)\fR, \fIalr-action(1)\fR, \fIalr-build(1)\fR, \fIalr-clean(1)\fR, \fIalr-dev(1)\fR, \fIalr-edit(1)\fR, \fIalr-run(1)\fR, \fIalr-exec(1)\fR, \fIgprbuild(1)\fR
+.SH AUTHOR
+Generated with generate-man from Alire execution

@@ -1,0 +1,76 @@
+.TH ALR-PUBLISH 1 "Aug 3, 2022" "Alire 1.2" "Alire manual"
+.nh
+.ad l
+.SH NAME
+alr-publish \- Help with the publication of a new release
+.\"
+.SH SYNOPSIS
+.sp
+\fIalr publish\fP [options] [\-\-skip\-build] [\-\-tar] [\-\-manifest <file>] [<URL> [commit]]]
+.\"
+.SH OPTIONS
+.TP 5
+--manifest=\fIARG\fP
+Selects a manifest file other than ./alire.toml
+.TP 5
+--tar
+Start the publishing assistant to create a source archive from a local directory
+.TP 5
+--trusted-sites
+Print a list of trusted git repository sites
+.TP 5
+--skip-build
+Skip the build check step
+.\"
+.SH GLOBAL OPTIONS
+.TP 5
+-c, --config=\fIARG\fP
+Override configuration folder location
+.TP 5
+-f, --force
+Keep going after a recoverable troublesome situation
+.TP 5
+-h, --help
+Display general or command-specific help
+.TP 5
+-n, --non-interactive
+Assume default answers for all user prompts
+.TP 5
+--no-color
+Disables colors in output
+.TP 5
+--no-tty
+Disables control characters in output
+.TP 5
+--prefer-oldest
+Prefer oldest versions instead of newest when resolving dependencies
+.TP 5
+--version
+Displays version and exits
+.TP 5
+-q
+Limit output to errors
+.TP 5
+-v
+Be more verbose (use twice for extra detail)
+.TP 5
+-d, --debug[]
+Enable debug-specific log messages
+.\"
+.SH DESCRIPTION
+Checks a release and generates an index manifest
+.PP
+See full details at
+https://github.com/alire-project/alire/blob/master/doc/publishing.md
+URL is an optional path to a remote source archive, or a local or remote git
+repository.
+For the common use case of a github-hosted repository, issue `alr publish`
+after committing and pushing the new release version.
+Use \fI--tar\fP to create a source archive ready to be uploaded.
+Use \fI--manifest\fP to use metadata in a non-default file.
+See the above link for help with other scenarios.
+
+.SH SEE ALSO
+\fIalr(1)\fR, \fIalr-action(1)\fR, \fIalr-build(1)\fR, \fIalr-clean(1)\fR, \fIalr-dev(1)\fR, \fIalr-edit(1)\fR, \fIalr-run(1)\fR, \fIalr-test(1)\fR, \fIalr-exec(1)\fR, \fIgprbuild(1)\fR
+.SH AUTHOR
+Generated with generate-man from Alire execution

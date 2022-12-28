@@ -1,0 +1,70 @@
+.TH ALR-INIT 1 "Aug 3, 2022" "Alire 1.2" "Alire manual"
+.nh
+.ad l
+.SH NAME
+alr-init \- Creates a new working release with alire metadata, or generate metadata
+.\"
+.SH SYNOPSIS
+.sp
+\fIalr init\fP [options] {\-\-bin|\-\-lib} <crate name>
+.\"
+.SH OPTIONS
+.TP 5
+--bin
+New project is an executable
+.TP 5
+--lib
+New project is a library
+.TP 5
+--in-place
+Create alr files in current folder
+.TP 5
+--no-skel
+Do not generate non-alire skeleton files
+.\"
+.SH GLOBAL OPTIONS
+.TP 5
+-c, --config=\fIARG\fP
+Override configuration folder location
+.TP 5
+-f, --force
+Keep going after a recoverable troublesome situation
+.TP 5
+-h, --help
+Display general or command-specific help
+.TP 5
+-n, --non-interactive
+Assume default answers for all user prompts
+.TP 5
+--no-color
+Disables colors in output
+.TP 5
+--no-tty
+Disables control characters in output
+.TP 5
+--prefer-oldest
+Prefer oldest versions instead of newest when resolving dependencies
+.TP 5
+--version
+Displays version and exits
+.TP 5
+-q
+Limit output to errors
+.TP 5
+-v
+Be more verbose (use twice for extra detail)
+.TP 5
+-d, --debug[]
+Enable debug-specific log messages
+.\"
+.SH DESCRIPTION
+Initializes a new crate containing a ready-to-build GNAT project. The crate
+is created as a child of the current directory, containing minimal sources
+for an executable or library, as specified.
+.PP
+\fI--in\fP-place is intended to be used inside the crate directory.
+
+.SH SEE ALSO
+\fIalr(1)\fR, \fIalr-get(1)\fR, \fIalr-index(1)\fR, \fIalr-pin(1)\fR, \fIalr-search(1)\fR, \fIalr-show(1)\fR, \fIalr-update(1)\fR, \fIalr-with(1)\fR, \fIgprbuild(1)\fR
+.SH AUTHOR
+Generated with generate-man from Alire execution

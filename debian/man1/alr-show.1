@@ -1,0 +1,94 @@
+.TH ALR-SHOW 1 "Aug 3, 2022" "Alire 1.2" "Alire manual"
+.nh
+.ad l
+.SH NAME
+alr-show \- See information about a release
+.\"
+.SH SYNOPSIS
+.sp
+\fIalr show\fP [options] [<crate>[allowed versions]] [\-\-system] [\-\-external[\-detect] | \-\-graph | \-\-jekyll | \-\-solve | \-\-tree
+.\"
+.SH OPTIONS
+.TP 5
+--detail
+Show additional details about dependencies
+.TP 5
+--external-detect
+Add detected externals to available releases
+.TP 5
+--external
+Show info about external definitions for a crate
+.TP 5
+--graph
+Print ASCII graph of dependencies
+.TP 5
+--system
+Show info relevant to current environment
+.TP 5
+--solve
+Solve dependencies and report
+.TP 5
+--tree
+Show complete dependency tree
+.TP 5
+--jekyll
+Enable Jekyll output format
+.\"
+.SH GLOBAL OPTIONS
+.TP 5
+-c, --config=\fIARG\fP
+Override configuration folder location
+.TP 5
+-f, --force
+Keep going after a recoverable troublesome situation
+.TP 5
+-h, --help
+Display general or command-specific help
+.TP 5
+-n, --non-interactive
+Assume default answers for all user prompts
+.TP 5
+--no-color
+Disables colors in output
+.TP 5
+--no-tty
+Disables control characters in output
+.TP 5
+--prefer-oldest
+Prefer oldest versions instead of newest when resolving dependencies
+.TP 5
+--version
+Displays version and exits
+.TP 5
+-q
+Limit output to errors
+.TP 5
+-v
+Be more verbose (use twice for extra detail)
+.TP 5
+-d, --debug[]
+Enable debug-specific log messages
+.\"
+.SH DESCRIPTION
+Shows information found in the loaded indexes about a specific release (see
+below to narrow the searched milestones). By default, only direct
+dependencies are reported. With \fI--solve\fP, a full solution is resolved and
+reported in list and graph form.
+.PP
+With \fI--external\fP, the external definitions for a crate are shown, instead of
+information about a particular release
+Version selection syntax (global policy applies within the allowed version
+subsets):
+.PP
+crate        	Newest/oldest version
+.br
+crate=version	Exact version
+.br
+crate^version	Major-compatible version
+.br
+crate~version	Minor-compatible version
+
+.SH SEE ALSO
+\fIalr(1)\fR, \fIalr-get(1)\fR, \fIalr-index(1)\fR, \fIalr-init(1)\fR, \fIalr-pin(1)\fR, \fIalr-search(1)\fR, \fIalr-update(1)\fR, \fIalr-with(1)\fR, \fIgprbuild(1)\fR
+.SH AUTHOR
+Generated with generate-man from Alire execution

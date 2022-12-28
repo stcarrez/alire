@@ -1,0 +1,79 @@
+.TH ALR-PIN 1 "Aug 3, 2022" "Alire 1.2" "Alire manual"
+.nh
+.ad l
+.SH NAME
+alr-pin \- Pin dependencies to exact versions
+.\"
+.SH SYNOPSIS
+.sp
+\fIalr pin\fP [options] [[crate[=<version>]] | crate \-\-use=<path> [\-\-commit=REF] [\-\-branch=NAME] | \-\-all]
+.\"
+.SH OPTIONS
+.TP 5
+--all
+Pin the complete solution
+.TP 5
+--unpin
+Unpin a release
+.TP 5
+--branch=\fINAME\fP
+Branch to be tracked in repository
+.TP 5
+--commit=\fIREF\fP
+Reference to be retrieved from repository
+.TP 5
+--use=\fIPATH|URL\fP
+Use a directory or repository to fulfill a dependency
+.\"
+.SH GLOBAL OPTIONS
+.TP 5
+-c, --config=\fIARG\fP
+Override configuration folder location
+.TP 5
+-f, --force
+Keep going after a recoverable troublesome situation
+.TP 5
+-h, --help
+Display general or command-specific help
+.TP 5
+-n, --non-interactive
+Assume default answers for all user prompts
+.TP 5
+--no-color
+Disables colors in output
+.TP 5
+--no-tty
+Disables control characters in output
+.TP 5
+--prefer-oldest
+Prefer oldest versions instead of newest when resolving dependencies
+.TP 5
+--version
+Displays version and exits
+.TP 5
+-q
+Limit output to errors
+.TP 5
+-v
+Be more verbose (use twice for extra detail)
+.TP 5
+-d, --debug[]
+Enable debug-specific log messages
+.\"
+.SH DESCRIPTION
+Pin releases to a particular version. By default, the current solution
+version is used. A pinned release is not affected by automatic updates.
+.PP
+Without arguments, show existing pins.
+Use \fI--all\fP to pin the whole current solution.
+Specify a single crate to modify its pin.
+Use the \fI--use\fP <PATH|URL> switch to use the target to fulfill a dependency
+locally instead of looking for indexed releases. An optional reference can be
+specified with \fI--commit\fP; the pin will be frozen at the commit currently
+matching the reference.  Alternatively, a branch to track can be specified
+with \fI--branch\fP. Use `alr update` to refresh the tracking pin contents.
+
+.SH SEE ALSO
+\fIalr(1)\fR, \fIalr-get(1)\fR, \fIalr-index(1)\fR, \fIalr-init(1)\fR, \fIalr-search(1)\fR, \fIalr-show(1)\fR, \fIalr-update(1)\fR, \fIalr-with(1)\fR, \fIgprbuild(1)\fR
+.SH AUTHOR
+Generated with generate-man from Alire execution

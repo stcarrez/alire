@@ -1,0 +1,58 @@
+.TH ALR-ACTION 1 "Aug 3, 2022" "Alire 1.2" "Alire manual"
+.nh
+.ad l
+.SH NAME
+alr-action \- List or manually trigger action hooks
+.\"
+.SH SYNOPSIS
+.sp
+\fIalr action\fP [options] [post_fetch|pre_build|post_build|test]
+.\"
+.SH OPTIONS
+.TP 5
+-r, --recursive
+List or trigger actions also in dependencies
+.\"
+.SH GLOBAL OPTIONS
+.TP 5
+-c, --config=\fIARG\fP
+Override configuration folder location
+.TP 5
+-f, --force
+Keep going after a recoverable troublesome situation
+.TP 5
+-h, --help
+Display general or command-specific help
+.TP 5
+-n, --non-interactive
+Assume default answers for all user prompts
+.TP 5
+--no-color
+Disables colors in output
+.TP 5
+--no-tty
+Disables control characters in output
+.TP 5
+--prefer-oldest
+Prefer oldest versions instead of newest when resolving dependencies
+.TP 5
+--version
+Displays version and exits
+.TP 5
+-q
+Limit output to errors
+.TP 5
+-v
+Be more verbose (use twice for extra detail)
+.TP 5
+-d, --debug[]
+Enable debug-specific log messages
+.\"
+.SH DESCRIPTION
+List or manually trigger action hooks.
+.PP
+
+.SH SEE ALSO
+\fIalr(1)\fR, \fIalr-build(1)\fR, \fIalr-clean(1)\fR, \fIalr-dev(1)\fR, \fIalr-edit(1)\fR, \fIalr-run(1)\fR, \fIalr-test(1)\fR, \fIalr-exec(1)\fR, \fIgprbuild(1)\fR
+.SH AUTHOR
+Generated with generate-man from Alire execution
