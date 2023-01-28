@@ -3,7 +3,8 @@ Section: devel
 Priority: optional
 Maintainer: Stephane Carrez <Stephane.Carrez@gmail.com>
 Build-Depends: debhelper (>= 11), gnat,
- gprbuild (>= 2015-2), python3
+ gprbuild (>= 2015-2), python3,
+ libgnatcoll21-dev, libxmlezout10-dev
 Standards-Version: 4.1.4
 Homepage: https://github.com/alire-project
 Vcs-Git: https://github.com/alire-project/alire.git
@@ -16,5 +17,6 @@ Description: Ada package manager.
  A catalog of ready-to-use Ada libraries plus a command-line tool
  (`alr`) to obtain, build, and incorporate them into your own projects.
  It aims to fulfill a similar role to Rust's `cargo` or OCaml's `opam`.
-
-
+ .
+ This is a source package manager, in contrast to apt which is a binary
+ package manager.
