@@ -44,3 +44,9 @@
 [submodule "deps/clic"]
 	path = deps/clic
 	url = https://github.com/alire-project/clic.git
+[submodule "deps/xmlezout"]
+	path = deps/xmlezout
+	url = https://github.com/alire-project/xmlezout.git
+[submodule "deps/gnatcoll-slim"]
+	path = deps/gnatcoll-slim
+	url = https://github.com/alire-project/gnatcoll-core.git
