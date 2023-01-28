@@ -1,3 +1,6 @@
+[submodule "deps/xmlezout"]
+	path = deps/xmlezout
+	url = https://github.com/alire-project/xmlezout.git
 [submodule "deps/ajunitgen"]
 	path = deps/ajunitgen
 	url = https://github.com/mosteo/ajunitgen.git
@@ -13,6 +16,10 @@
 [submodule "deps/ada-toml"]
 	path = deps/ada-toml
 	url = https://github.com/pmderodat/ada-toml.git
+[submodule "deps/gnatcoll-slim"]
+	path = deps/gnatcoll-slim
+	url = https://github.com/alire-project/gnatcoll-core.git
+	branch = slim
 [submodule "testsuite/fixtures/crates/libhello_git"]
 	path = testsuite/fixtures/crates/libhello_git
 	url = https://github.com/alire-project/libhello.git

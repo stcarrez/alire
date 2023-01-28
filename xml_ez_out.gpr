@@ -1,5 +1,0 @@
-with "xmlezout";
-
-project Xml_Ez_Out is
-   for Source_Dirs use ();
-end Xml_Ez_Out;
