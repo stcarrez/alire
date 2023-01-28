@@ -8,7 +8,6 @@ aggregate project Alr_Env is
                          "deps/ajunitgen",
                          "deps/ansi",
                          "deps/clic",
-                         "deps/gnatcoll-slim",
                          "deps/minirest",
                          "deps/optional",
                          "deps/semantic_versioning",
@@ -17,8 +16,7 @@ aggregate project Alr_Env is
                          "deps/spdx",
                          "deps/stopwatch",
                          "deps/toml_slicer",
-                         "deps/uri-ada",
-                         "deps/xmlezout"
+                         "deps/uri-ada"
                         );
 
    for Project_Files use ("alr.gpr");

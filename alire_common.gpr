@@ -68,11 +68,11 @@ abstract project Alire_Common is
    end Compiler;
 
    package Builder is
-      for Switches ("Ada") use ("-s", "-j0", "-g");
+      for Switches ("Ada") use ("-j0", "-g");
    end Builder;
 
    package Binder is
-      for Switches ("Ada") use ("-Es", "-g", "-static");
+      for Switches ("Ada") use ("-Es", "-g");
    end Binder;
 
    package Ide is
