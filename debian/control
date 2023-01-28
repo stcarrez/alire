@@ -4,7 +4,10 @@ Priority: optional
 Maintainer: Stephane Carrez <Stephane.Carrez@gmail.com>
 Build-Depends: debhelper (>= 11), gnat,
  gprbuild (>= 2015-2), python3,
- libgnatcoll21-dev, libxmlezout10-dev
+ libgnatcoll21-dev, libxmlezout10-dev,
+ libxmlada-dom12-dev, libxmlada-sax12-dev,
+ libxmlada-input12-dev, libxmlada-unicode12-dev,
+ libgnatprj10-dev
 Standards-Version: 4.1.4
 Homepage: https://github.com/alire-project
 Vcs-Git: https://github.com/alire-project/alire.git
