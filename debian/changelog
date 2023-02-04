@@ -1,11 +1,6 @@
-alire (1.2.1-3) UNRELEASED; urgency=medium
+alire (1.2.1-1) unstable; urgency=medium
 
-  * Fix package to follow Ada Debian policy
+  * Initial packaging by Stéphane Carrez; conforms to Debian Policy for Ada.
+    Closes: #1029448.
 
  -- Stephane Carrez <Stephane.Carrez@gmail.com>  Sat, 28 Jan 2023 11:44:25 +0100
-
-alire (1.2.1-2) UNRELEASED; urgency=medium
-
-  * Update package release
-
- -- Stephane Carrez <Stephane.Carrez@gmail.com>  Wed, 28 Dec 2022 15:36:40 +0100

@@ -2,6 +2,7 @@ Source: alire
 Section: devel
 Priority: optional
 Maintainer: Stephane Carrez <Stephane.Carrez@gmail.com>
+Uploaders: Ludovic Brenta <lbrenta@debian.org>
 Build-Depends: debhelper (>= 11), gnat,
  gprbuild (>= 2015-2), python3,
  libgnatcoll21-dev, libxmlezout10-dev,
