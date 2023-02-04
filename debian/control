@@ -17,6 +17,7 @@ Vcs-Browser: https://github.com/alire-project/tree/master
 Package: alire
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Suggests: gnat, gprbuild
 Description: Ada package manager.
  A catalog of ready-to-use Ada libraries plus a command-line tool
  (`alr`) to obtain, build, and incorporate them into your own projects.
