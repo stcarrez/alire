@@ -27,8 +27,8 @@ Files: deps/aaa/*
 Copyright: 2018-2022 Alejandro R Mosteo <amosteo@unizar.es>
 License: LGPL-3+
 
-File: deps/clic/src/clic-command_line.ads
-      deps/clic/src/clic-command_line.adb
+Files: deps/clic/src/clic-command_line.ads
+       deps/clic/src/clic-command_line.adb
 Copyright: 1999-2020 AdaCore
 License: GPL-3+ with GCC-runtime-library exception
 
@@ -79,16 +79,6 @@ License: Expat
 Files: deps/toml_slicer/*
 Copyright: 2021 Alejandro R Mosteo <amosteo@unizar.es>
 License: Expat
-
-Files: deps/gnatcoll-slim/src/link_max.c
-       deps/gnatcoll-slim/src/objlist_file.c
-       deps/gnatcoll-slim/src/run_path_option.c
-       deps/gnatcoll-slim/src/separate_run_path_option.c
-       deps/gnatcoll-slim/src/set_std_prefix.c
-       deps/gnatcoll-slim/src/update_path.c
-Copyright: 2002-2004, ACT-Europe
-           2007-2017, AdaCore
-License: GPL-2+
 
 Files: deps/gnatcoll-slim/*
 Copyright: 2001-2022 AdaCore
