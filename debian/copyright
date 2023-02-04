@@ -27,11 +27,6 @@ Files: deps/aaa/*
 Copyright: 2018-2022 Alejandro R Mosteo <amosteo@unizar.es>
 License: LGPL-3+
 
-Files: deps/clic/src/clic-command_line.ads
-       deps/clic/src/clic-command_line.adb
-Copyright: 1999-2020 AdaCore
-License: GPL-3+ with GCC-runtime-library exception
-
 Files: deps/clic/*
 Copyright: 2021-2022 Fabien Chouteau <chouteau@adacore.com>
 License: Expat
